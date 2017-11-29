@@ -39,6 +39,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -167,13 +168,13 @@ public class JSONObject {
      * Construct an empty JSONObject.
      */
     public JSONObject() {
-        // HashMap is used on purpose to ensure that elements are unordered by 
-        // the specification.
-        // JSON tends to be a portable transfer format to allows the container 
-        // implementations to rearrange their items for a faster element 
-        // retrieval based on associative access.
-        // Therefore, an implementation mustn't rely on the order of the item.
-        this.map = new HashMap<String, Object>();
+    	/*
+    	 * Note: The original code uses a HashMap with the justification that
+    	 * the JSON specification states it should be "unordered".
+    	 * We changed this to a LinkedHashMap because randomly shuffling 
+    	 * input is not user-friendly. 
+    	 */
+        this.map = new LinkedHashMap<String, Object>();
     }
 
     /**

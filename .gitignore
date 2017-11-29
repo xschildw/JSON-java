@@ -1,3 +1,8 @@
-# ignore eclipse project files
-.project
+logs/
+target/
 .classpath
+.settings
+.project
+.pydevproject
+.DS_Store
+*.pyc
