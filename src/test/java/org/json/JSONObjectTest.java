@@ -75,4 +75,16 @@ public class JSONObjectTest {
 		JSONObject object = new JSONObject("{\"key\":\"123\"}") ;
 		assertEquals(123L, object.getLong("key"));
 	}
+	
+	@Test
+	public void testGetBoolean() {
+		JSONObject object = new JSONObject("{\"key\":true}") ;
+		assertEquals(Boolean.TRUE, object.getBoolean("key"));
+	}
+	
+	@Test
+	public void testGetBooleanWithString() {
+		JSONObject object = new JSONObject("{\"key\":\"true\"}") ;
+		assertEquals(Boolean.TRUE, object.getBoolean("key"));
+	}
 }
