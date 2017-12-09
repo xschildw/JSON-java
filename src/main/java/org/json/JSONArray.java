@@ -458,10 +458,7 @@ public class JSONArray implements Iterable<Object> {
      */
     public String getString(int index) throws JSONException {
         Object object = this.get(index);
-        if (object instanceof String) {
-            return (String) object;
-        }
-        throw new JSONException("JSONArray[" + index + "] not a string.");
+        return object.toString();
     }
 
     /**

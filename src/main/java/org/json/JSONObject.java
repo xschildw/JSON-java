@@ -275,9 +275,9 @@ public class JSONObject {
      */
     public JSONObject(Map<?, ?> m) {
         if (m == null) {
-            this.map = new HashMap<String, Object>();
+            this.map = new LinkedHashMap<String, Object>();
         } else {
-            this.map = new HashMap<String, Object>(m.size());
+            this.map = new LinkedHashMap<String, Object>(m.size());
         	for (final Entry<?, ?> e : m.entrySet()) {
                 final Object value = e.getValue();
                 if (value != null) {
@@ -409,7 +409,7 @@ public class JSONObject {
      * @param initialCapacity initial capacity of the internal map.
      */
     protected JSONObject(int initialCapacity){
-        this.map = new HashMap<String, Object>(initialCapacity);
+        this.map = new LinkedHashMap<String, Object>(initialCapacity);
     }
 
     /**
@@ -805,10 +805,7 @@ public class JSONObject {
      */
     public String getString(String key) throws JSONException {
         Object object = this.get(key);
-        if (object instanceof String) {
-            return (String) object;
-        }
-        throw new JSONException("JSONObject[" + quote(key) + "] not a string.");
+        return object.toString();
     }
 
     /**
