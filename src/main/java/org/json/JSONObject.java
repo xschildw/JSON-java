@@ -805,10 +805,7 @@ public class JSONObject {
      */
     public String getString(String key) throws JSONException {
         Object object = this.get(key);
-        if (object instanceof String) {
-            return (String) object;
-        }
-        throw new JSONException("JSONObject[" + quote(key) + "] not a string.");
+        return object.toString();
     }
 
     /**
