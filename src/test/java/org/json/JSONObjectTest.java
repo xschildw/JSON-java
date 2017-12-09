@@ -44,9 +44,9 @@ public class JSONObjectTest {
 	
 	@Test
 	public void testToStringAsArray() {
-		JSONObject object = new JSONObject("{\"key\":[\"a\",\"b\"]}") ;
+		JSONObject object = new JSONObject("{\"key\":[123,\"456\"]}") ;
 		String value =  object.getString("key");
-		assertEquals("[\"a\",\"b\"]", value);
+		assertEquals("[123,\"456\"]", value);
 	}
 	
 	@Test
@@ -54,5 +54,25 @@ public class JSONObjectTest {
 		JSONObject object = new JSONObject("{\"key\":{\"subKey\":456}}")  ;
 		String value =  object.getString("key");
 		assertEquals("{\"subKey\":456}", value);
+	}
+	
+	@Test
+	public void testToArrayGetString() {
+		JSONObject object = new JSONObject("{\"key\":[123,\"456\"]}") ;
+		JSONArray array = object.getJSONArray("key");
+		assertEquals("123", array.getString(0));
+		assertEquals("456", array.getString(1));
+	}
+	
+	@Test
+	public void testGetLong() {
+		JSONObject object = new JSONObject("{\"key\":123}") ;
+		assertEquals(123L, object.getLong("key"));
+	}
+	
+	@Test
+	public void testGetLongAsString() {
+		JSONObject object = new JSONObject("{\"key\":\"123\"}") ;
+		assertEquals(123L, object.getLong("key"));
 	}
 }
